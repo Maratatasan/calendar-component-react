@@ -1,0 +1,30 @@
+.calendar-comp {
+  text-align: center;
+  background: black;
+  color: rgb(190, 187, 187);
+  border: 1px solid rgb(190, 187, 187);
+  padding: 1px;
+}
+
+.c-month-and-year {
+  display: flex;
+  justify-content: center;
+}
+.c-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-days-of-month {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-cell {
+  width: 30px;
+}
+
+.c-cell-active {
+  background: rgb(190, 187, 187);
+  color: black;
+}
