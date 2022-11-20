@@ -1,46 +1,92 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# This is a calendar component app with cypress testing
 
-## Available Scripts
+In this app I have implemented a simple calendar component with the ability to update the state of the calendar for the purpose of using cypress testing framework.
 
-In the project directory, you can run:
+## Once you have downloaded the app make sure to install all dependencies by running
 
-### `npm start`
+### npm i
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Link React Docs: <https://create-react-app.dev/docs/adding-typescript/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tests
 
-### `npm test`
+- tests are located in the cypress/e2e/spec.cy.ts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How to run tests?
 
-### `npm run build`
+1. launch the app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- open terminal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- go to the root folder of the app in your terminal
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- enter the command > npm run start
 
-### `npm run eject`
+2. Run cypress.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- open a second terminal
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- make sure you are in the app root folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- enter the command > npm run cypress:open
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- a window will appear - click on E2E Testing
 
-## Learn More
+- select a browser of your choice (chrome)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- click Start E2E Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- click on spec.cy.ts
+
+link to cypress docs: <https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test#What-you-ll-learn>
+
+# The Calendar App
+
+The calendar is located in src/calendar
+
+The app follows a form of MVC pattern where the logic comes from the useCalendar hook and Rendering is done by a dumbed down Calendar.tsx.
+
+## useCalendar
+
+use Calendar takes and string of ISO date ie '2022-11-11'
+
+#### and returns several states
+
+- monthName: string;
+
+- year: number;
+
+- daysOfWeek: cDayOfWeek[];
+
+- weeks: cCalendarWeek[];
+
+- currentDate: number | null;
+
+#### and several functions to update the calendar state
+
+- updateDate: ({ date, active }: cUseCalendarProps) => void;
+
+- updateCurrentDate: (newDate: number | null) => void;
+
+- updateMonth: (increment: number) => void;
+
+- updateYear: (increment: number) => void;
+
+#### The "types" are located in useCalendar.ts  and dateTypes.ts
+
+## Calendar
+
+Calendar.jsx uses the information from the useCalendar hook and displays the data in a meaningful way with an interactive UI for updating the calendar app state .
+
+There are 2 more components in Calendar.jsx
+
+- Row
+  - Takes daysOfWeek and weeks
+  - renders a row of cells ie Mo, Tu, Wed of 1,2,3,4
+  
+- Cell
+  - Takes object with value
+  - renders the value
+  - has the event listener to update current date
+  - has the logic for highlighting active cell

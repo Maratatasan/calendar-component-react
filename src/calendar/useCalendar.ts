@@ -1,12 +1,8 @@
 import {
-  useEffect,
   useState,
-  useContext,
   useRef,
-  MutableRefObject,
 } from "react";
 import { IsoDateString } from "./dateTypes";
-import { CalendarContext } from "./Calendar";
 function getMonthName(month: number): string {
   const monthNames = [
     "January",
@@ -31,6 +27,7 @@ export type cCalendarWeek = cDay[];
 
 export type cUseCalendarProps = { date: IsoDateString; active?: boolean };
 export type cCalendarProps = {
+
   monthName: string;
   year: number;
   daysOfWeek: cDayOfWeek[];
@@ -39,8 +36,8 @@ export type cCalendarProps = {
 
   updateDate: ({ date, active }: cUseCalendarProps) => void;
   updateCurrentDate: (newDate: number | null) => void;
-  updateMonth: (newMonth: number) => void;
-  updateYear: (newYear: number) => void;
+  updateMonth: (increment: number) => void;
+  updateYear: (increment: number) => void;
 };
 
 // Calendar logic
@@ -79,8 +76,8 @@ export const useCalendar = ({
     setCurrentDate(newCurrent);
   };
 
-  const updateMonth = (monthIncrement: number) => {
-    const newMonthNum = monthNum.current + monthIncrement;
+  const updateMonth = (increment: number) => {
+    const newMonthNum = monthNum.current + increment;
 
     if (newMonthNum < 0) {
       setYear(year - 1);
@@ -102,10 +99,11 @@ export const useCalendar = ({
     
   }
 
-  const updateYear = (yearIncrement: number) => {
-    setYear(year + yearIncrement);
-    setWeeks(createCalendarWeeks(year + yearIncrement, monthNum.current));
+  const updateYear = (increment: number) => {
+    setYear(year + increment);
+    setWeeks(createCalendarWeeks(year + increment, monthNum.current));
   };
+
   return {
     monthName,
     year,

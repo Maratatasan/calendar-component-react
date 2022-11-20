@@ -2,8 +2,6 @@ import React, {
   memo,
   createContext,
   useContext,
-  useEffect,
-  useMemo,
 } from "react";
 import {
   useCalendar,
@@ -15,7 +13,7 @@ import {
 
 import "./calendar.css";
 import { IsoDateString } from "./dateTypes";
-let count = 0;
+
 export const CalendarContext = createContext({} as cCalendarProps);
 
 const Calendar = ({ date }: { date: IsoDateString }) => {
@@ -23,23 +21,17 @@ const Calendar = ({ date }: { date: IsoDateString }) => {
     date: date,
     active: true,
   });
+
   const {
     monthName,
     year,
     daysOfWeek,
     weeks,
-    currentDate,
-    updateDate,
-    updateCurrentDate,
     updateMonth,
     updateYear,
   } = calendarProps;
 
-  useEffect(() => {
-    count += 1;
-    console.log("Calendar", count);
-    console.log("currentDate", currentDate);
-  }, [currentDate]);
+
   return (
     <div className="calendar-comp">
       <div className="c-select-date">
@@ -107,7 +99,7 @@ const Row = memo(
 );
 
 const Cell = memo((props: cDay) => {
-  const { currentDate, updateDate, updateCurrentDate } =
+  const { currentDate, updateCurrentDate } =
     useContext(CalendarContext);
   return (
     <div
