@@ -5,7 +5,9 @@
   border: 1px solid rgb(190, 187, 187);
   padding: 1px;
 }
-
+c-select-date > button {
+  padding: 4px;
+}
 .c-month-and-year {
   display: flex;
   justify-content: center;
@@ -22,8 +24,18 @@
 
 .c-cell {
   width: 30px;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+.c-cell-hover:hover {
+cursor: pointer;
+}
 .c-cell-active {
   background: rgb(190, 187, 187);
   color: black;
