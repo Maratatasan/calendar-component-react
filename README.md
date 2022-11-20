@@ -49,7 +49,7 @@ The app follows a form of MVC pattern where the logic comes from the useCalendar
 
 ## useCalendar
 
-use Calendar takes and string of ISO date ie '2022-11-11'
+use Calendar takes a string of ISO date ie '2022-11-11'
 
 #### and returns several states
 
@@ -83,10 +83,10 @@ There are 2 more components in Calendar.jsx
 
 - Row
   - Takes daysOfWeek and weeks
-  - renders a row of cells ie Mo, Tu, Wed of 1,2,3,4
+  - renders a row of cells ie Mo, Tu, Wed or/and 1,2,3,4
   
 - Cell
-  - Takes object with value
+  - Takes object with key value ie {value: 'Mo'} or {value: 25}
   - renders the value
   - has the event listener to update current date
   - has the logic for highlighting active cell
